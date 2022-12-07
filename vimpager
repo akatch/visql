@@ -1,0 +1,14 @@
+#!/bin/bash
+PLATFORM=$(uname -a | awk '{ print $1 }')
+
+what=-
+test "$@" && what="$@"
+
+case $PLATFORM in
+    Linux)
+        exec vim -u NONE -R -S ~/.vim/plugin/less.vim -c Less $what
+        ;;
+    Darwin)
+        exec /Applications/MacVim.app/Contents/MacOS/Vim -u NONE -R -S ~/.vim/plugin/less.vim -c Less $what
+        ;;
+esac
